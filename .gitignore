@@ -1,0 +1,35 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.log
+
+# Node
+node_modules/
+dist/
+build/
+
+# Sensitive files - NEVER commit these
+simulator/certs/
+*.pem
+*.key
+*.crt
+
+# Data files (too large for GitHub)
+data/*.txt
+data/*.csv
+
+# Logs
+backend/backend.log
+simulator/logs.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Notebooks output
+notebooks/.ipynb_checkpoints/

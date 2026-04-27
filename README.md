@@ -31,6 +31,50 @@ Competitive with published academic results on CMAPSS FD001 (typical range: 13�
 
 ---
 
+## Data Analysis
+
+### Engine lifetimes — training set
+![Engine lifetimes](plot_engine_lifetimes.png)
+Each bar represents one engine. Red bars failed early (~130 cycles), green bars lasted longest (~360 cycles). The dashed blue line shows the mean lifetime of 206 cycles. This distribution informed the decision to cap RUL at 125 cycles.
+
+---
+
+### Sensor degradation over time
+![Sensor degradation](plot_sensor_degradation.png)
+All 14 useful sensors plotted across the full lifetime of Engine 1. Sensors that visibly trend up or down as cycles increase (s11, s12, s4) are the strongest predictors of failure.
+
+---
+
+### Key sensors across 30 engines
+![Key sensors](plot_key_sensors.png)
+The 6 most informative sensors overlaid across 30 engines with normalised cycle axis (0 = new, 1 = failure). Consistent patterns across all engines confirm these sensors reliably capture degradation regardless of individual engine variation.
+
+---
+
+### Sensor correlation matrix
+![Correlation heatmap](plot_correlation_heatmap.png)
+Highly correlated sensor pairs (s13/s15, s4/s8) carry redundant information. This guided feature selection and explains why rolling window statistics added more value than raw sensor readings.
+
+---
+
+### RUL distribution after capping
+![RUL distribution](plot_rul_distribution.png)
+Left: uniform distribution of RUL values after capping at 125 cycles. Right: RUL countdown curves for 5 engines — the model learns these declining patterns.
+
+---
+
+### Model evaluation — predicted vs actual
+![Model evaluation](plot_model_evaluation.png)
+Left: scatter plot of predicted vs actual RUL. Points close to the diagonal represent accurate predictions. Right: error distribution centred near zero confirms no systematic bias. RMSE = 19.81 cycles.
+
+---
+
+### Feature importance
+![Feature importance](plot_feature_importance.png)
+Top 20 features ranked by Random Forest importance score. Rolling window statistics (mean and std) dominate the top positions, confirming that temporal trends matter more than instantaneous sensor values.
+
+---
+
 ## How it works
 
 NASA CMAPSS data → Python simulator → FastAPI backend → React dashboard
